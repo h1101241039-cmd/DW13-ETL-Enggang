@@ -6,8 +6,9 @@ build: null
 push: null
 
 pull:
-- prefect.deployments.steps.set_working_directory:
-    directory: D:\Kampus\Semester-4\DATAWAREHOUSE\P13_enggang\dw_anggang_etl
+- prefect.deployments.steps.git_clone:
+    repository: https://github.com/h1101241039-cmd/DW13-ETL-Enggang.git
+    branch: main
 
 deployments:
 - name: Deploy-ETL-Harian
