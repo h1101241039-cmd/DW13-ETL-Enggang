@@ -1,29 +1,28 @@
-# File: pipeline.py
-from prefect import flow, task
+from prefect import flow
 
-# 1. Definisikan Task dengan decorator @task
-@task(name="Ambil Data Mentah", retries=2, retry_delay_seconds=5)
-def extract_data():
-    print("Mengambil data dari sumber...")
-    return [1, 2, 3, 4, 5]
+# Import semua flow dari file ETL
+from dim_pelanggan_etl import etl_dim_pelanggan_flow
+from dim_produk_etl import etl_dim_produk_flow
+from dim_toko_etl import flow_etl_dim_toko
+from dim_kurir_etl import etl_dim_kurir_flow
+from dim_waktu_etl import flow_etl_dim_waktu
+from fact_sales_etl import etl_fact_sales_flow
+from fact_delivery_etl import etl_fact_delivery_flow
+from fact_target_sales_etl import etl_fact_target_sales_flow
 
-@task(name="Transformasi Data")
-def transform_data(data):
-    print("Memproses data...")
-    return [x * 10 for x in data]
-
-@task(name="Simpan Data")
-def load_data(data):
-    print(f"Menyimpan data ke database: {data}")
-
-# 2. Definisikan Flow dengan decorator @flow
-@flow(name="Pipeline ETL Sederhana", description="Contoh flow untuk materi kuliah SI")
+@flow(name="Pipeline ETL Sederhana", description=" flow ")
 def etl_flow():
-    # Rangkai task di dalam flow
-    data_mentah = extract_data()
-    data_bersih = transform_data(data_mentah)
-    load_data(data_bersih)
+    # Jalankan semua dimensi 
+    etl_dim_pelanggan_flow()
+    etl_dim_produk_flow()
+    flow_etl_dim_toko()
+    etl_dim_kurir_flow()
+    flow_etl_dim_waktu()
+    
+    # jalankan fakta
+    etl_fact_sales_flow()
+    etl_fact_delivery_flow()
+    etl_fact_target_sales_flow()
 
-# 3. Jalankan flow
 if __name__ == "__main__":
     etl_flow()

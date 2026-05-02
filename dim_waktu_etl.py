@@ -13,9 +13,9 @@ from datetime import datetime
 
 DB_HOST = "localhost"
 DB_PORT = "5432"
-DB_NAME = "dws_enggang"
+DB_NAME = "db_target_enggang"
 DB_USER = "postgres"
-DB_PASS = ""
+DB_PASS = "sukalupa00"
 
 @task(name="Extract/Generate Date Range", retries=2)
 def generate_date_range(start_date: str, end_date: str) -> pd.DataFrame:

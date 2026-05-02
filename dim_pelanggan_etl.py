@@ -10,17 +10,17 @@ import uuid
 # =====================================================================
 OLTP_DB_CONFIG = {
     "host": "localhost",
-    "database": "oltp_enggang_khatulistiwa",
+    "database": "dwh_enggang_ritel",
     "user": "postgres",
-    "password": "",
+    "password": "sukalupa00",
     "port": "5432"
 }
 
 DW_DB_CONFIG = {
     "host": "localhost",
-    "database": "dws_enggang",
+    "database": "db_target_enggang",
     "user": "postgres",
-    "password": "",
+    "password": "sukalupa00",
     "port": "5432"
 }
 

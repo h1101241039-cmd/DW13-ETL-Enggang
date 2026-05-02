@@ -11,10 +11,10 @@ from prefect import task, flow
 
 DB_HOST = "localhost"
 DB_PORT = "5432"
-DW_NAME = "dws_enggang"
-OLTP_NAME = "oltp_enggang_khatulistiwa"
+DW_NAME = "db_target_enggang"
+OLTP_NAME = "dwh_enggang_ritel"
 DB_USER = "postgres"
-DB_PASS = ""
+DB_PASS = "sukalupa00"
 
 def get_dw_connection():
     return psycopg2.connect(
