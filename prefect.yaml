@@ -15,7 +15,7 @@ deployments:
   version: null
   tags: []
   concurrency_limit: null
-  description: Contoh flow untuk materi kuliah SI
+  description: Contoh flow 
   entrypoint: pipeline.py:etl_flow
   parameters: {}
   work_pool:
